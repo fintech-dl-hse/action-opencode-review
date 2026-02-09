@@ -19,7 +19,7 @@ Use this action in a workflow triggered by issue or PR comments (e.g. when someo
 ### Example workflow
 
 ```yaml
-name: OpenCode homework review
+name: OpenCode Homework Review
 
 on:
   issue_comment:

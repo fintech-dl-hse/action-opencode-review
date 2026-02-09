@@ -1,5 +1,5 @@
 name: 'Review OpenCode'
-description: 'Run OpenCode to review student homework (Deep Learning course). Short, polite feedback; no code writing or pushes.'
+description: 'Run OpenCode to review homework.'
 
 runs:
   using: composite
