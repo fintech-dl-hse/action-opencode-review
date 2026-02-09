@@ -14,29 +14,11 @@ runs:
       with:
         persist-credentials: false
 
-    - name: Create virtual environment and install nbconvert
-      shell: bash
-      run: |
-        python3 -m venv .venv
-        ./opencode_venv/bin/pip3 install nbconvert
-
-    - name: Write OpenCode config
-      shell: bash
-      run: |
-        cat > opencode.json << 'EOF'
-        {
-          "$schema": "https://opencode.ai/config.json",
-          "permission": {
-            "*": "allow"
-          }
-        }
-        EOF
-
     - name: Run OpenCode review
       uses: anomalyco/opencode/github@latest
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
-        OPENCODE_YOLO: "true"
+        OPENCODE_CONFIG_CONTENT: '{"$schema":"https://opencode.ai/config.json","permission":{"*":"allow"}}'
       with:
         model: deepseek/deepseek-chat
         prompt: |
