@@ -17,8 +17,8 @@ runs:
     - name: Create virtual environment and install nbconvert
       shell: bash
       run: |
-        python -m venv .venv
-        .venv/bin/pip install nbconvert
+        python3 -m venv .venv
+        .venv/bin/pip3 install nbconvert
 
     - name: Run OpenCode review
       uses: anomalyco/opencode/github@latest
@@ -33,7 +33,7 @@ runs:
           ---
           ## Pre-review: prepare code for analysis
           Do these steps before writing any review:
-          1. **Use nbconvert from the project venv** — nbconvert is already installed in `.venv`; use `.venv/bin/jupyter nbconvert` or `.venv/bin/nbconvert` for conversion.
+          1. **Use jupyter nbconvert from the project venv** — jupyter nbconvert is already installed in `.venv`; use `.venv/bin/jupyter nbconvert` for conversion.
           2. **Export notebook to script** — convert the main Jupyter notebook to a plain Python script with no cell outputs (e.g. `.venv/bin/jupyter nbconvert --to script --no-prompt`; write only code, no markdown).
           3. **Save to /tmp** — write the converted script to a file under `/tmp` (e.g. `/tmp/notebook_script.py`) so you analyze a single, linear code file.
 
