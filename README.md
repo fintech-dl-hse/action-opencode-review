@@ -41,10 +41,6 @@ jobs:
     steps:
       - name: OpenCode review
         uses: fintech-dl-hse/action-opencode-review@main
-        with:
-          model: deepseek/deepseek-chat
-        env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
 ```
 
 - Set **model** and the matching **API key** in `env` (e.g. `DEEPSEEK_API_KEY`). `GITHUB_TOKEN` is provided by the runner.
