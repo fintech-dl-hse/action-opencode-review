@@ -18,7 +18,7 @@ runs:
       shell: bash
       run: |
         python3 -m venv .venv
-        .venv/bin/pip3 install nbconvert
+        ./opencode_venv/bin/pip3 install nbconvert
 
     - name: Write OpenCode config
       shell: bash
@@ -46,16 +46,15 @@ runs:
           ---
           ## Pre-review: prepare code for analysis
           Do these steps before writing any review:
-          1. **Use jupyter nbconvert from the project venv** — jupyter nbconvert is already installed in `.venv`; use `.venv/bin/jupyter nbconvert` for conversion.
-          2. **Export notebook to script** — convert the main Jupyter notebook to a plain Python script with no cell outputs (e.g. `.venv/bin/jupyter nbconvert --to script --no-prompt`; write only code, no markdown).
-          3. **Save to /tmp** — write the converted script to a file under `/tmp` (e.g. `/tmp/notebook_script.py`) so you analyze a single, linear code file.
+          1. **Export notebook to script** — convert the main Jupyter notebook to a plain Python script with no cell outputs (e.g. `/home/github-runner/opencode_venv/bin/jupyter nbconvert --to script --no-prompt`; write only code, no markdown).
+          2. **Save to /tmp** — write the converted script to a file under `/tmp` (e.g. `/tmp/notebook_script.py`) so you analyze a single, linear code file.
 
           ---
           ## Review guidelines
           - **Tone**: Short, polite, and helpful.
           - **Focus**: Inefficiencies, non-optimal implementation, messy or unclear code.
           - **Scope**: Analyze only the existing notebook code; do not search for training artifacts or run/execute code.
-          - **Output**: Do not write or suggest code, even if asked; do not push commits or create new scripts.
+          - **Output**: Do not write or suggest code, even if asked; do not push commits or create new scripts. Do not create new files in working directory.
 
           ---
           ## Hard constraints
