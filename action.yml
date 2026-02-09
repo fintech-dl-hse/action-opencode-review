@@ -14,11 +14,13 @@ runs:
       with:
         persist-credentials: false
 
+    # Restrictive OpenCode permissions: allow read in repo + /tmp, write only in /tmp,
+    # single bash command (nbconvert). See opencode.json and https://opencode.ai/docs/permissions/
     - name: Run OpenCode review
       uses: anomalyco/opencode/github@latest
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
-        OPENCODE_CONFIG_CONTENT: '{"$schema":"https://opencode.ai/config.json","permission":{"*":"allow"}}'
+        OPENCODE_CONFIG_CONTENT: '{"$schema":"https://opencode.ai/config.json","permission":{"*":"deny","read":{"*":"deny","**/*":"allow","/tmp/**":"allow"},"edit":{"*":"deny","/tmp/**":"allow"},"list":{"*":"deny","**/*":"allow","/tmp/**":"allow"},"glob":{"*":"deny","**/*":"allow"},"grep":{"*":"deny","**/*":"allow","/tmp/**":"allow"},"bash":{"*":"deny","jupyter nbconvert *":"allow","/home/github-runner/opencode_venv/bin/jupyter nbconvert *":"allow"},"external_directory":{"*":"deny","/tmp/**":"allow"},"webfetch":"deny","websearch":"deny","codesearch":"deny","task":"deny","skill":"deny","lsp":"deny","todoread":"deny","todowrite":"deny","doom_loop":"deny"}}'
       with:
         model: deepseek/deepseek-chat
         prompt: |
