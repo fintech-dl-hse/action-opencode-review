@@ -24,7 +24,7 @@ runs:
       uses: anomalyco/opencode/github@latest
       env:
         GITHUB_TOKEN: ${{ inputs.token }}
-        OPENCODE_AUTO_APPROVE: "true"
+        OPENCODE_YOLO: true
       with:
         model: deepseek/deepseek-chat
         prompt: |
